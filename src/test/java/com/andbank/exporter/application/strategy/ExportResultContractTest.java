@@ -1,5 +1,6 @@
 package com.andbank.exporter.application.strategy;
 
+import com.andbank.exporter.TestFixtures;
 import com.andbank.exporter.domain.model.ExportResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -60,22 +61,11 @@ class ExportResultContractTest {
     @Test
     @DisplayName("smoke test — strategies implementados producen output no vacío")
     void smokeTodosLosStrategies() {
-        // var transactions = TestFixtures.someTransactions();
-        // var account      = TestFixtures.anAccount();
-        // var customer     = TestFixtures.aCustomer();
+        var transactions = TestFixtures.someTransactions();
+        var account      = TestFixtures.anAccount();
+        var customer     = TestFixtures.aCustomer();
 
-        // assertThat(new CSVExportStrategy()
-        //         .export(transactions, account, customer).size()).isGreaterThan(0);
-
-        // assertThat(new JSONExportStrategy()
-        //         .export(transactions, account, customer).size()).isGreaterThan(0);
-
-        // assertThat(new PDFExportStrategy()
-        //         .export(transactions, account, customer).size()).isGreaterThan(0);
-
-        // assertThat(new OFXExportStrategy()
-        //         .export(transactions, account, customer).size()).isGreaterThan(0);
-
-        // TODO Módulo 3: agregar XLSXExportStrategy aquí
+        assertThat(new XlsxExportStrategy()
+                .export(transactions, account, customer).size()).isGreaterThan(0);
     }
 }

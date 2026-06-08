@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "simple-spec-builder": {
+      "source": "MauroDanielPenaloza/simple-spec-builder",
+      "sourceType": "github",
+      "skillPath": "skills/simple-spec-builder/SKILL.md",
+      "computedHash": "3bdcd4e0427ef747110c42d2942ce89bf44cce98f87dd4c3e8246fe6417a9ec9"
+    }
+  }
+}

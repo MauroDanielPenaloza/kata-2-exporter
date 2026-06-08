@@ -277,14 +277,13 @@ class StatementExportStrategyTest {
     */
 
     // ══════════════════════════════════════════════════════════════════════
-    //  TODO Módulo 3: Implementar XLSXExportStrategy y descomentar este bloque
+    //  XlsxExportStrategy — Módulo 3
     // ══════════════════════════════════════════════════════════════════════
-    /*
     @Nested
-    @DisplayName("XLSXExportStrategy")
+    @DisplayName("XlsxExportStrategy")
     class XLSXTests {
 
-        private final XLSXExportStrategy strategy = new XLSXExportStrategy();
+        private final XlsxExportStrategy strategy = new XlsxExportStrategy();
 
         @Test
         @DisplayName("supportedFormat() retorna XLSX")
@@ -305,7 +304,6 @@ class StatementExportStrategyTest {
         void magicBytes() {
             ExportResult result = strategy.export(transactions, account, customer);
             byte[] content = result.getContent();
-            // XLSX es un ZIP — siempre empieza con PK (0x50 0x4B)
             assertThat(content[0]).isEqualTo((byte) 0x50);
             assertThat(content[1]).isEqualTo((byte) 0x4B);
         }
@@ -323,6 +321,22 @@ class StatementExportStrategyTest {
             ExportResult result = strategy.export(transactions, account, customer);
             assertThat(result.getFilename()).endsWith(".xlsx");
         }
+
+        @Test
+        @DisplayName("lista vacía de transacciones produce hoja sin-movimientos")
+        void sinTransacciones() throws Exception {
+            ExportResult result = strategy.export(List.of(), account, customer);
+
+            assertThat(result.size()).isGreaterThan(0);
+            assertThat(result.getFilename()).isEqualTo("movimientos-a001.xlsx");
+
+            try (var workbook = new org.apache.poi.xssf.usermodel.XSSFWorkbook(
+                    new java.io.ByteArrayInputStream(result.getContent()))) {
+                assertThat(workbook.getNumberOfSheets()).isEqualTo(1);
+                assertThat(workbook.getSheetName(0)).isEqualTo("sin-movimientos");
+                assertThat(workbook.getSheetAt(0).getRow(0).getCell(0).getStringCellValue())
+                        .isEqualTo("No se encontraron movimientos en el rango solicitado");
+            }
+        }
     }
-    */
 }

@@ -96,14 +96,11 @@
         </dependency>
 
         <!-- ── Excel (Apache POI) ───────────────────────────────── -->
-        <!-- TODO Módulo 3: agregar dependencia para XLSX -->
-        <!--
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
             <version>${poi.version}</version>
         </dependency>
-        -->
 
         <!-- ── Test ─────────────────────────────────────────────── -->
         <dependency>

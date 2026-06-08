@@ -9,6 +9,6 @@ public enum ExportFormat {
     CSV,
     PDF,
     OFX,
-    JSON
-    // TODO Módulo 3: , XLSX
+    JSON,
+    XLSX
 }
