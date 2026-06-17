@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+# $1=prev-head, $2=new-head, $3=branch-checkout-flag (1=branch/tag, 0=file checkout)
+exec "$(dirname -- "$0")/sync-agent-config" post-checkout

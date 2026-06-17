@@ -1,0 +1,6 @@
+{
+    "repositories": [{
+        "git-url": "git@github.com:MauroDanielPenaloza/agent-config-common.git",
+        "branch": "main"
+    }]
+}

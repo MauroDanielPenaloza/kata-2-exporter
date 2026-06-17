@@ -47,3 +47,6 @@ spring-boot-devtools.properties
 
 # Ejercicio local (no versionar)
 ejercicio.md
+
+# Cache de repos de configuracion de agentes
+.agent-config/cache/

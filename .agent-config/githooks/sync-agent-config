@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+# Shared entry point for all agent-config sync hooks.
+set -u
+
+ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
+[ -n "$ROOT" ] || exit 0
+
+HOOK_NAME="${1:-unknown}"
+SCRIPT="$ROOT/.agent-config/scripts/sync-agent-config.sh"
+
+if [ ! -x "$SCRIPT" ]; then
+  chmod +x "$SCRIPT" 2>/dev/null || true
+fi
+
+if [ -f "$SCRIPT" ]; then
+  "$SCRIPT" "$HOOK_NAME" || true
+fi
+
+exit 0
